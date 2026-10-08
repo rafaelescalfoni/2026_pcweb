@@ -6,7 +6,7 @@ const livros = []
  * @param {*} livro - um novo livro
  * @returns colecao com o novo livro adicionado
  */
-const adicionarLivro = (livros, livro) => {
+const add = (livros, livro) => {
     livros.push(livro)
     return livros
 }
@@ -15,34 +15,47 @@ const adicionarLivro = (livros, livro) => {
  * 
  * @param {*} id 
  */
-const listar = id => {
-
-}
+const get = id => livros.find(livro=>livro.id ==id)
 
 /**
  * Função que pesquisa livros em uma coleção
  * @param {*} livros - a coleção
  * @param {*} termo - fragmento de título para a pesquisa
+ * @returns array de livros filtrados
  */
-const pesquisarLivros = (livros, termo) => {
-    return livros.find(livro => livro.titulo.toLowerCase() == termo.toLowerCase())
+const listLivroByTitulo = (livros, termo) => 
+    livros.filter(livro => 
+        livro.titulo.toLowerCase().includes(termo.toLowerCase()))
+
+/**
+ * 
+ * @param {*} livros 
+ * @param {*} genero 
+ * @returns array de livros filtrados
+ */
+const listLivroByGenero = (livros, genero) =>
+    livros.filter(livro => 
+        livro.genero.toLowerCase().includes(genero.toLowerCase()))
+
+
+const markAsLido = id => {
+
 }
 
-const filtrar = genero =>{
+const remove = id => {
 
 }
 
-const marcarComoLido = id => {
-
-}
-
-const remover = id => {
-
-}
-
-const estatisticas = () => {
+const estatistics = () => {
 
 }
 
 // dá visibilidade a algumas funções do arquivo js.
-module.exports= {adicionarLivro, pesquisarLivros};
+module.exports= {add
+    , remove
+    , get
+    , listLivroByTitulo
+    , listLivroByGenero
+    , markAsLido
+    , estatistics
+};
