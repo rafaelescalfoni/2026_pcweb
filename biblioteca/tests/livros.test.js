@@ -10,6 +10,7 @@ const {
     , listLivroByGenero
     , markAsLido
     , estatistics
+    , salvarLivros
 } = require("../js/livros");
 
 test("deve adicionar um livro à coleção", () => {
@@ -115,4 +116,44 @@ test("deve encontrar livros pelo genero", () => {
 
     expect(resultado).toHaveLength(1);
     expect(resultado[0].titulo).toBe("HTML e CSS");
+});
+
+/*
+Testes do Salvar Livros
+*/
+test("deve salvar livros no localstorage", () => {
+    const localStorageMock = (() => {
+    let store = {};
+        return {
+            getItem: (key) => store[key] || null,
+            setItem: (key, value) => { store[key] = value.toString(); },
+            clear: () => { store = {}; },
+            removeItem: (key) => { delete store[key]; }
+        };
+    })();
+
+    Object.defineProperty(global, 'localStorage', { value: localStorageMock });
+    const livros = [
+        {
+            id: 1,
+            titulo: "JavaScript",
+            autor: "Autor A",
+            genero: "Programação",
+            paginas: 300,
+            lido: false
+        },
+        {
+            id: 2,
+            titulo: "HTML e CSS",
+            autor: "Autor B",
+            genero: "Web",
+            paginas: 250,
+            lido: true
+        }
+    ];
+
+    const resultado = salvarLivros(livros);
+
+    expect(resultado.length).toBe(1);
+    
 });

@@ -50,6 +50,14 @@ const estatistics = () => {
 
 }
 
+const salvarLivros = livros => {
+    localStorage.setItem(
+        "livros",
+        JSON.stringify(livros)
+    );
+}
+
+
 // dá visibilidade a algumas funções do arquivo js.
 module.exports= {add
     , remove
@@ -58,4 +66,5 @@ module.exports= {add
     , listLivroByGenero
     , markAsLido
     , estatistics
+    , salvarLivros
 };

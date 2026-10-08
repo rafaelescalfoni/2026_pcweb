@@ -6,7 +6,10 @@
   "scripts": {
     "test": "jest"
   },
-  "keywords": [],
+  "jest": {
+    "testEnvironment": "jsdom"
+  }
+  , "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
